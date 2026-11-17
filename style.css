@@ -1,0 +1,625 @@
+/* =========================================================
+   Tejash Raj - Resume Website
+   Fonts: Archivo (wide, heavy headings) + Instrument Serif (accent)
+          + Newsreader (body)
+   ========================================================= */
+
+/* ---------- 1. Design tokens ---------- */
+:root {
+  --bg: #f7f6f2;
+  --bg-tint: #efede7;
+  --ink: #151515;
+  --muted: #55524c;
+  --line: #d8d5cc;
+  --ghost: #ebe9e3;
+  --red: #e63b22;
+  --red-dark: #c42f19;
+
+  --font-display: "Archivo", "Arial Black", sans-serif;
+  --font-accent: "Instrument Serif", Georgia, serif;
+  --font-body: "Newsreader", Georgia, "Times New Roman", serif;
+}
+
+/* ---------- 2. Base / element selectors ---------- */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem; /* keeps headings clear of the sticky nav */
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1.15rem;
+  line-height: 1.65;
+}
+
+h1, h2, h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-stretch: 125%;
+  text-transform: uppercase;
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+
+p { margin: 0; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:focus-visible,
+.btn:focus-visible {
+  outline: 3px solid var(--red);
+  outline-offset: 3px;
+}
+
+em {
+  font-family: var(--font-accent);
+  font-style: italic;
+  font-weight: 400;
+  font-stretch: normal;
+  text-transform: none;
+  color: var(--red);
+  letter-spacing: 0;
+}
+
+/* ---------- 3. Layout helpers (class selectors) ---------- */
+.wrap {
+  width: min(1180px, 100% - 3rem);
+  margin-inline: auto;
+}
+
+.section {
+  padding-block: clamp(3.5rem, 8vw, 6.5rem);
+}
+
+.section-tint {
+  background: var(--bg-tint);
+}
+
+.eyebrow {
+  font-family: var(--font-display);
+  font-stretch: 125%;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--red-dark);
+  margin-bottom: 1.25rem;
+}
+
+/* ---------- 4. Navigation (flexbox + sticky positioning) ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding-block: 1rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-family: var(--font-display);
+  font-stretch: 125%;
+  font-weight: 900;
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.logo::before {
+  content: "";
+  width: 0.8rem;
+  height: 0.8rem;
+  background: var(--red);
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.25rem;
+}
+
+.nav-links a {
+  font-family: var(--font-display);
+  font-stretch: 125%;
+  font-weight: 500;
+  font-size: 0.78rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  padding-block: 0.4rem;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.nav-links a:hover {
+  border-bottom-color: var(--red);
+}
+
+/* ---------- 5. Buttons ---------- */
+.btn {
+  display: inline-block;
+  padding: 0.95rem 1.5rem;
+  background: var(--red-dark);
+  color: #fff;
+  font-family: var(--font-display);
+  font-stretch: 125%;
+  font-weight: 800;
+  font-size: 0.78rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  transition: background 0.2s;
+}
+
+.btn:hover {
+  background: var(--ink);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--ink);
+  box-shadow: inset 0 0 0 2px var(--ink);
+}
+
+.btn-ghost:hover {
+  background: var(--ink);
+  color: #fff;
+}
+
+/* ---------- 6. Hero (CSS grid) ---------- */
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: center;
+}
+
+.hero h1 {
+  font-size: clamp(2.4rem, 6.2vw, 5.4rem);
+  margin-bottom: 1.75rem;
+}
+
+.hero h1 em {
+  font-size: 1.15em;
+}
+
+.lead {
+  max-width: 34rem;
+  font-size: 1.3rem;
+  color: var(--muted);
+  margin-bottom: 2rem;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* Red card with an offset block, like the reference portrait */
+.hero-card {
+  position: relative;
+  background: var(--red-dark);
+  color: #fff;
+  padding: 2.25rem;
+  min-height: 24rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 1.25rem 1.25rem 0 var(--ink);
+}
+
+.monogram {
+  font-family: var(--font-display);
+  font-stretch: 125%;
+  font-weight: 900;
+  font-size: clamp(5rem, 11vw, 9rem);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+}
+
+.facts div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding-block: 0.8rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.45);
+}
+
+.facts dt {
+  font-size: 1rem;
+}
+
+.facts dd {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.95rem;
+  text-align: right;
+  max-width: 11rem;
+}
+
+/* ---------- 6b. About section with portrait ---------- */
+.about-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(2.5rem, 6vw, 6rem);
+  align-items: center;
+}
+
+.portrait {
+  position: relative;
+  margin: 0 1.25rem 1.25rem 0;
+}
+
+/* red block offset behind the photo */
+.portrait::before {
+  content: "";
+  position: absolute;
+  inset: 1.25rem -1.25rem -1.25rem 1.25rem;
+  background: var(--red-dark);
+}
+
+.portrait img {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
+.about-text h2 {
+  font-size: clamp(1.9rem, 4.2vw, 3.4rem);
+  margin-bottom: 1.5rem;
+}
+
+.about-text h2 em {
+  font-size: 1.15em;
+}
+
+.about-text p + p {
+  margin-top: 1.1rem;
+}
+
+.about-text p:not(.eyebrow) {
+  max-width: 36rem;
+  color: var(--muted);
+}
+
+/* ---------- 7. Section headings with ghost watermark ---------- */
+.section-head {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: clamp(9rem, 18vw, 13rem);
+  margin-bottom: 2.5rem;
+}
+
+.section-head h2 {
+  font-size: clamp(2.4rem, 6vw, 5rem);
+  padding-top: 0.5rem;
+}
+
+.ghost {
+  position: absolute;
+  top: -0.1em;
+  left: -0.03em;
+  z-index: -1;
+  font-family: var(--font-display);
+  font-stretch: 125%;
+  font-weight: 900;
+  font-size: clamp(8rem, 24vw, 20rem);
+  line-height: 1;
+  color: var(--ghost);
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+}
+
+.section-tint .ghost {
+  color: #e4e1d9;
+}
+
+/* ---------- 8. Experience cards ---------- */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+
+.card {
+  background: var(--bg);
+  padding: clamp(1.5rem, 3vw, 3rem);
+}
+
+.card-wide {
+  grid-column: 1 / -1;
+}
+
+.card-num {
+  font-family: var(--font-display);
+  font-stretch: 125%;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  color: var(--red-dark);
+  margin-bottom: 1.5rem;
+}
+
+.card h3 {
+  font-size: clamp(1.3rem, 2.4vw, 2rem);
+  margin-bottom: 0.7rem;
+}
+
+.card-meta {
+  color: var(--muted);
+  font-style: italic;
+  margin-bottom: 1.25rem;
+}
+
+.card ul {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.card li {
+  padding-left: 1.1rem;
+  position: relative;
+}
+
+.card li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.7em;
+  width: 0.4rem;
+  height: 0.4rem;
+  background: var(--red);
+}
+
+.card-wide ul {
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 3rem;
+}
+
+/* ---------- 9. Education timeline ---------- */
+.timeline {
+  border-top: 1px solid var(--ink);
+}
+
+.timeline-item {
+  display: grid;
+  grid-template-columns: 14rem 1fr;
+  gap: 1.5rem;
+  padding-block: 1.75rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.timeline-date {
+  font-family: var(--font-display);
+  font-stretch: 125%;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--red-dark);
+  padding-top: 0.3rem;
+}
+
+.timeline-item h3 {
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  margin-bottom: 0.5rem;
+}
+
+.timeline-item p {
+  color: var(--muted);
+}
+
+/* ---------- 10. Case competitions ---------- */
+.case-list {
+  border-top: 1px solid var(--ink);
+}
+
+.case-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  padding-block: 1.25rem;
+  border-bottom: 1px solid var(--line);
+  font-size: 1.35rem;
+}
+
+.year {
+  font-family: var(--font-display);
+  font-stretch: 125%;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  color: var(--red-dark);
+}
+
+/* ---------- 11. Skills and hobbies ---------- */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 5vw, 5rem);
+}
+
+.small-title {
+  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  margin-bottom: 1.5rem;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+
+.chips li {
+  padding: 0.5rem 1.1rem;
+  border: 1.5px solid var(--ink);
+  font-size: 1.05rem;
+}
+
+/* ---------- 12. Vision ---------- */
+.vision-statement {
+  max-width: 52rem;
+  font-family: var(--font-display);
+  font-stretch: 112%;
+  font-weight: 800;
+  font-size: clamp(1.6rem, 3.6vw, 3rem);
+  line-height: 1.2;
+  margin-bottom: 1.75rem;
+}
+
+.vision-statement em {
+  font-size: 1.15em;
+}
+
+.vision-sub {
+  max-width: 38rem;
+  font-size: 1.25rem;
+  color: var(--muted);
+}
+
+/* ---------- 13. Contact + footer ---------- */
+.contact {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+.contact .eyebrow {
+  color: #ff8d7a;
+}
+
+.contact-title {
+  font-size: clamp(3rem, 10vw, 8rem);
+  margin-bottom: 2rem;
+}
+
+.contact-mail {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-stretch: 112%;
+  font-weight: 800;
+  font-size: clamp(1.1rem, 3.2vw, 2.2rem);
+  padding-bottom: 0.3rem;
+  border-bottom: 3px solid var(--red);
+  word-break: break-all;
+}
+
+.contact-mail:hover {
+  color: #ff8d7a;
+}
+
+.contact-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 2.5rem;
+  margin-top: 1.75rem;
+  color: #cfcbc2;
+}
+
+.site-footer {
+  background: var(--ink);
+  color: #a9a59c;
+  border-top: 1px solid #333;
+  font-size: 0.95rem;
+}
+
+.footer-row {
+  display: flex;
+  justify-content: space-between;
+  padding-block: 1.25rem;
+}
+
+.footer-row a:hover {
+  color: #fff;
+}
+
+/* ---------- 14. Responsive ---------- */
+@media (max-width: 900px) {
+  .hero-grid,
+  .two-col,
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .portrait {
+    max-width: 22rem;
+  }
+
+  .hero-card {
+    min-height: 18rem;
+    box-shadow: 0.8rem 0.8rem 0 var(--ink);
+    margin-right: 0.8rem;
+  }
+
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card-wide ul {
+    grid-template-columns: 1fr;
+  }
+
+  .timeline-item {
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
+  }
+}
+
+@media (max-width: 720px) {
+  .nav {
+    flex-wrap: wrap;
+    row-gap: 0.5rem;
+  }
+
+  .nav > .btn {
+    display: none;
+  }
+
+  .nav-links {
+    order: 3;
+    width: 100%;
+    gap: 1.25rem;
+    overflow-x: auto;
+  }
+
+  html {
+    scroll-padding-top: 7rem;
+  }
+
+  .case-list li {
+    font-size: 1.15rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}
